@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-RK3128_BLOBS_VERSION = 7d631e0d5b2d373b54d4533580d08fb9bd2eaad4
+RK3128_BLOBS_VERSION = 74213af1e952c4683d2e35952507133b61394862
 RK3128_BLOBS_SITE = https://github.com/rockchip-linux/rkbin.git
 RK3128_BLOBS_SITE_METHOD = git
 RK3128_BLOBS_INSTALL_IMAGES = YES

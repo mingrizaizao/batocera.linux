@@ -16,6 +16,9 @@ INTERNALCARD=$(cat /boot/boot/batocera.board)
 if test "${INTERNALCARD}" = "p5000"
 then
 	CONNECTORNAME="DSI" # For PS5000
+elif test "${INTERNALCARD}" = "txcz-rk3128-v3-1"
+then
+    CONNECTORNAME="HDMI-A"
 else
 	CONNECTORNAME="DPI" # For Powkiddy A12/A13, & PS7000
 fi
@@ -31,6 +34,13 @@ set_mode() {
 
 if test "${ACTION}" = "setOutput"
 then
+        # txcz-rk3128-v3-1 只有 HDMI，不需要切换逻辑
+        if test "${INTERNALCARD}" = "txcz-rk3128-v3-1"
+        then
+            set_mode "0 - HDMI-A"
+            exit 0
+        fi
+
         # force no hdmi if it is unplugged
         NEWCONN=$(cat /var/run/drmConn)
         HDMISTATUS=$(cat /sys/class/drm/card0-HDMI-A-1/status)

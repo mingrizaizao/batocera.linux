@@ -1,0 +1,5 @@
+config BR2_PACKAGE_UBOOT_TXCZV_RK3128_3_1
+    bool "txcz-rk3128-v3.1"
+    select BR2_PACKAGE_RK3128_BLOBS
+    help
+        uboot files for TXCZ_RK3128_3_1

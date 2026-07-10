@@ -1,0 +1,2 @@
+config BR2_PACKAGE_HOST_KERNEL_LINARO_TOOLCHAIN
+    bool "Host kernel linaro toolchain"

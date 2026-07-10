@@ -1,5 +1,4 @@
 menu "batocera.linux"
-
 menu "System"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/core/batocera-system/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/core/batocera-configgen/Config.in"
@@ -32,6 +31,7 @@ menu "System"
 #   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/boot/uboot-a3gen2/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/boot/uboot-ps5000/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/boot/uboot-ps7000/Config.in"
+    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/boot/uboot-txcz-rk3128-v3-1/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/boot/uboot-powkiddy-a13/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/boot/uboot-odroid-m1/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/boot/uboot-rock-3a/Config.in"
@@ -60,6 +60,7 @@ menu "System"
 
   menu "Toolchain"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/toolchain/toolchain-optional-linaro-aarch64/Config.in"
+    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/toolchain/kernel-linaro-toolchain/Config.in"
   endmenu
 
   menu "Fonts"
