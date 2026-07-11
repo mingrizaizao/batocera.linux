@@ -5,8 +5,8 @@
 ################################################################################
 
 ALLLINUXFIRMWARES_VERSION = 20241110
-ALLLINUXFIRMWARES_SOURCE = linux-firmware-$(ALLLINUXFIRMWARES_VERSION).tar.gz
-ALLLINUXFIRMWARES_SITE = https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot
+ALLLINUXFIRMWARES_SOURCE = $(ALLLINUXFIRMWARES_VERSION).tar.gz
+ALLLINUXFIRMWARES_SITE = https://kernel.googlesource.com/pub/scm/linux/kernel/git/firmware/linux-firmware.git/+archive
 
 # exclude some dirs not required on batocera
 ALLLINUXFIRMWARES_REMOVE_DIRS = $(@D)/liquidio $(@D)/netronome $(@D)/mellanox \
