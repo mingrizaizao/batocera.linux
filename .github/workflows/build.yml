@@ -1,4 +1,4 @@
-name: Build Batocera RK3128
+name: Build Batocera RK3128 1
 
 on:
   workflow_dispatch:
