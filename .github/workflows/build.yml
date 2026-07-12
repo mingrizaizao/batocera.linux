@@ -80,3 +80,15 @@ jobs:
       - name: Build Batocera
         run: |
           make rk3128-build
+
+      - name: Check build output
+        run: |
+          ls -lh output/rk3128/images/batocera/images/txcz-rk3128-v3-1/
+  
+      - name: Upload Batocera image
+        uses: actions/upload-artifact@v4
+        with:
+          name: batocera-rk3128-txcz-rk3128-v3-1-image
+          path: |
+            output/rk3128/images/batocera/images/txcz-rk3128-v3-1/*.img.gz
+          retention-days: 7
