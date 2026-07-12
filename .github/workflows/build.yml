@@ -53,4 +53,24 @@ jobs:
           echo "=============================================================================="
           df -hT
           echo "=============================================================================="
+      - name: 下载编译所需的依赖 (Install the software packages required for compilation)
+        run: |
+          sudo apt update
+          sudo apt full-upgrade -y
+          sudo apt install -y build-essential
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          ref: batocera41-txcz-rk3128-v3-1
+          submodules: recursive
+          fetch-depth: 1
 
+      - name: Build docker image
+        run: |
+          docker build \
+            -t batoceralinux/batocera.linux-build:latest \
+            .
+
+      - name: Build Batocera
+        run: |
+          make rk3128-build
