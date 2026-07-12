@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-UBOOT_TXCZ_RK3128_V3_1_VERSION = aa58732baa889a3798d8369d34ce31047acc92d9
+UBOOT_TXCZ_RK3128_V3_1_VERSION = abfc9d0dc79dd0ab9d0e94c4b3c8d80e3a58b008
 UBOOT_TXCZ_RK3128_V3_1_SITE = $(call github,mingrizaizao,u-boot-rockchip,$(UBOOT_TXCZ_RK3128_V3_1_VERSION))
 UBOOT_TXCZ_RK3128_V3_1_LICENSE = GPLv2
 
