@@ -1,8 +1,10 @@
 name: Build Batocera RK3128
 
 on:
+  push:
+    branches:
+      - batocera41-txcz-rk3128-v3-1
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
