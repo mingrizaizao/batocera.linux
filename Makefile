@@ -121,7 +121,7 @@ publish-docker-image: _check_docker
 
 output-dir-%: %-supported
 	@mkdir -p $(OUTPUT_DIR)/$*
-    @mkdir -p $(OUTPUT_DIR)/$*/tmp
+	@mkdir -p $(OUTPUT_DIR)/$*/tmp
 
 ccache-dir:
 	@mkdir -p $(CCACHE_DIR)
