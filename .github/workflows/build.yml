@@ -1,4 +1,4 @@
-name: Build Batocera RK3128 1
+name: Build Batocera RK3128
 
 on:
   workflow_dispatch:
@@ -69,7 +69,6 @@ jobs:
           echo $CI
       - name: Check Makefile
         run: |
-          grep -n "docker.*run" Makefile
           grep -n "DOCKER_TTY" Makefile
       - name: Build docker image
         run: |
