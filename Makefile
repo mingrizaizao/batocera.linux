@@ -64,6 +64,7 @@ endif
 define RUN_DOCKER
 	$(DOCKER) run $(DOCKER_TTY) --init --rm \
 		-e HOME \
+		-e TMPDIR=/$*/tmp \
 		-v $(PROJECT_DIR):/build \
 		-v $(DL_DIR):/build/buildroot/dl \
 		-v $(OUTPUT_DIR)/$*:/$* \
@@ -120,6 +121,7 @@ publish-docker-image: _check_docker
 
 output-dir-%: %-supported
 	@mkdir -p $(OUTPUT_DIR)/$*
+    @mkdir -p $(OUTPUT_DIR)/$*/tmp
 
 ccache-dir:
 	@mkdir -p $(CCACHE_DIR)
