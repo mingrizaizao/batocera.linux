@@ -1,4 +1,4 @@
-name: Build Batocera RK3128
+name: Build Batocera For TXCZ-RK3128-V3.1
 
 on:
   workflow_dispatch:
