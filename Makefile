@@ -46,14 +46,23 @@ else # DIRECT_BUILD
 	DOCKER         ?= docker
 
 	ifndef BATCH_MODE
-		DOCKER_OPTS += -i
+		ifndef CI
+			DOCKER_OPTS += -i
+		endif
 	endif
+
+
+	DOCKER_TTY :=
+ifndef CI
+	DOCKER_TTY := -t
+endif
+
 
 	DOCKER_REPO    ?= batoceralinux
 	IMAGE_NAME     ?= batocera.linux-build
 
 define RUN_DOCKER
-	$(DOCKER) run -t --init --rm \
+	$(DOCKER) run $(DOCKER_TTY) --init --rm \
 		-e HOME \
 		-v $(PROJECT_DIR):/build \
 		-v $(DL_DIR):/build/buildroot/dl \
