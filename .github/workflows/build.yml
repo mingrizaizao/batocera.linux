@@ -64,7 +64,13 @@ jobs:
           ref: batocera41-txcz-rk3128-v3-1
           submodules: recursive
           fetch-depth: 1
-
+      - name: Check CI
+        run: |
+          echo $CI
+      - name: Check Makefile
+        run: |
+          grep -n "docker.*run" Makefile
+          grep -n "DOCKER_TTY" Makefile
       - name: Build docker image
         run: |
           docker build \
