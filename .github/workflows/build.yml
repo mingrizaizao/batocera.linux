@@ -88,6 +88,7 @@ jobs:
           docker build \
             -t batoceralinux/batocera.linux-build:latest \
             .
+
       - name: Check directories
         run: |
           pwd
@@ -99,6 +100,23 @@ jobs:
       - name: Check Make vars
         run: |
           make vars
+
+      - name: Check root usage
+        run: |
+          echo "==== / ===="
+          sudo du -xh --max-depth=1 / 2>/dev/null | sort -h
+
+          echo
+          echo "==== /var ===="
+          sudo du -xh --max-depth=2 /var 2>/dev/null | sort -h | tail -30
+
+          echo
+          echo "==== docker ===="
+          sudo du -sh /var/lib/docker 2>/dev/null || true
+
+          echo
+          echo "==== new docker ===="
+          du -sh docker-data 2>/dev/null || true
 
       - name: Build Batocera
         run: |
