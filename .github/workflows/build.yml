@@ -8,6 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Batocera for txcz-rk3128-v3.1
     steps:
+      - name: Test sinden download
+        run: |
+          wget -S https://sindenlightgun.com/software/SindenLightgunSoftwareReleaseV1.09.zip -O /tmp/test.zip || true
+
+          echo "================"
+
+          curl -I https://sindenlightgun.com/software/SindenLightgunSoftwareReleaseV1.09.zip || true
+
+          echo "================"
+
+          curl -L -v https://sindenlightgun.com/software/SindenLightgunSoftwareReleaseV1.09.zip -o /tmp/test2.zip || true
       - name: Before freeing up disk space
         run: |
           echo "Before freeing up disk space"
