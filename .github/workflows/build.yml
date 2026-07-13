@@ -7,15 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Build Batocera for txcz-rk3128-v3.1
-    steps:
-      - name: Test docker download
-        run: |
-          docker run --rm ubuntu:22.04 bash -c "
-            apt update &&
-            apt install -y wget &&
-            wget -S https://sindenlightgun.com/software/SindenLightgunSoftwareReleaseV1.09.zip -O /tmp/test.zip
-          "
-          
+    steps:    
       - name: Before freeing up disk space
         run: |
           echo "Before freeing up disk space"
@@ -64,6 +56,26 @@ jobs:
           submodules: recursive
           fetch-depth: 1
 
+      # Cache Batocera downloaded sources
+      - name: Cache Batocera dl
+        uses: actions/cache@v4
+        with:
+          path: |
+            dl
+          key: batocera-dl-${{ runner.os }}-${{ github.ref_name }}
+          restore-keys: |
+            batocera-dl-${{ runner.os }}-
+
+      # Cache compiler output
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.ccache
+          key: batocera-ccache-${{ runner.os }}-${{ github.ref_name }}
+          restore-keys: |
+            batocera-ccache-${{ runner.os }}-
+
       - name: Move Docker data-root
         run: |
           sudo systemctl stop docker
@@ -81,6 +93,14 @@ jobs:
       - name: Check Makefile
         run: |
           grep -n "DOCKER_TTY" Makefile
+          
+      - name: Check cache directories
+        run: |
+          echo "==== dl ===="
+          ls -ld dl || true
+
+          echo "==== ccache ===="
+          ls -ld ~/.ccache || true
 
       - name: Build docker image
         run: |
