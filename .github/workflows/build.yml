@@ -8,6 +8,23 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Batocera for txcz-rk3128-v3.1
     steps:
+      - name: Start disk monitor
+        run: |
+          (
+            while true; do
+              echo "================ $(date) ================"
+              df -h
+              echo
+              echo "Docker:"
+              sudo du -sh /var/lib/docker 2>/dev/null || true
+              echo
+              echo "Workspace:"
+              du -sh . 2>/dev/null || true
+              echo "========================================="
+              sleep 60
+            done
+          ) &
+              
       - name: Before freeing up disk space
         run: |
           echo "Before freeing up disk space"
