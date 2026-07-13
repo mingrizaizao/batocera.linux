@@ -75,7 +75,18 @@ jobs:
           docker build \
             -t batoceralinux/batocera.linux-build:latest \
             .
+      - name: Check directories
+        run: |
+          pwd
+          df -h
+          ls -ld .
+          ls -ld output || true
+          realpath output || true
 
+      - name: Check Make vars
+        run: |
+          make vars
+          
       - name: Build Batocera
         run: |
           make rk3128-build
