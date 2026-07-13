@@ -49,10 +49,6 @@ jobs:
           df -hT
           echo "=============================================================================="
         
-      - name: 下载编译所需的依赖 (Install the software packages required for compilation)
-        run: |
-          sudo apt update
-
       - name: Checkout source
         uses: actions/checkout@v4
         with:
