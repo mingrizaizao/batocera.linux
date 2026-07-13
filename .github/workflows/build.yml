@@ -57,8 +57,6 @@ jobs:
       - name: 下载编译所需的依赖 (Install the software packages required for compilation)
         run: |
           sudo apt update
-          sudo apt full-upgrade -y
-          sudo apt install -y build-essential
 
       - name: Checkout source
         uses: actions/checkout@v4
@@ -84,7 +82,7 @@ jobs:
       - name: Check Makefile
         run: |
           grep -n "DOCKER_TTY" Makefile
-          
+
       - name: Build docker image
         run: |
           docker build \
