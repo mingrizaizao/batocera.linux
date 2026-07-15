@@ -49,7 +49,6 @@ if TYPE_CHECKING:
 eslog = logging.getLogger(__name__)
 
 def main(args: argparse.Namespace, maxnbplayers: int) -> int:
-    print("======== enter main ========")
     # squashfs roms if squashed
     if Path(args.rom).suffix == ".squashfs":
         with squashfs_rom(args.rom) as rom:
@@ -58,7 +57,6 @@ def main(args: argparse.Namespace, maxnbplayers: int) -> int:
         return start_rom(args, maxnbplayers, args.rom, args.rom)
 
 def start_rom(args: argparse.Namespace, maxnbplayers: int, rom: str, romConfiguration: str) -> int:
-    print("======== enter start_rom ========")
     player_controllers = Controller.load_for_players(maxnbplayers, args)
 
     # find the system to run
@@ -480,8 +478,6 @@ def getHudConfig(system: Emulator, systemName: str, emulator: str, core: str, ro
     return configstr
 
 def runCommand(command: Command) -> int:
-    
-    print("======== enter runCommand ========")
     global proc
 
     # compute environment : first the current envs, then override by values set at generator level
@@ -517,43 +513,8 @@ def signal_handler(signal, frame):
     if proc:
         eslog.debug('killing proc')
         proc.kill()
+
 def launch() -> None:
-    print("======== enter launch ========")
-    import subprocess
-
-    cmd = '''
-    LANGUAGE= \
-    CONSOLE=/dev/console \
-    SHLVL=1 \
-    HOME=/userdata/system \
-    OLDPWD=/ \
-    DBUS_SESSION_BUS_ADDRESS=unix:path=/tmp/dbus-ssKGpeEQ5u,guid=170b07cc2b69e24498f1c9ee12cea613 \
-    INIT_VERSION=sysvinit- \
-    SDL_NOMOUSE=1 \
-    _=/usr/bin/emulationstation \
-    label=BATOCERA \
-    TERM=linux \
-    PATH=/sbin:/usr/sbin:/bin:/usr/bin \
-    RUNLEVEL=S \
-    XDG_RUNTIME_DIR=/var/run \
-    PREVLEVEL=N \
-    LANG=en_US.UTF-8 \
-    SHELL=/bin/sh \
-    PWD=/userdata \
-    LC_ALL=en_US.UTF-8 \
-    SDL_RENDER_VSYNC=1 \
-    XDG_CONFIG_HOME=/userdata/system/configs \
-    /usr/bin/retroarch \
-    -L /usr/lib/libretro/fceumm_libretro.so \
-    --config /userdata/system/configs/retroarch/retroarchcustom.cfg \
-    --verbose \
-    "/userdata/roms/nes/2048 (tsone).nes"
-    '''
-
-    subprocess.run(cmd, shell=True)
-
-def launch1() -> None:
-    print("======== enter launch ========")
     with setup_logging():
         global proc
         proc = None
@@ -606,8 +567,6 @@ def launch1() -> None:
         exit(exitcode)
 
 if __name__ == '__main__':
-    
-    print("======== enter __main__ ========")
     launch()
 
 # Local Variables:
